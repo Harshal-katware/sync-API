@@ -14,7 +14,7 @@ public class AuthService {
 
     private final UserRepository repo;
     private final JwtUtil jwtUtil;
-    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    private final BCryptPasswordEncoder encoder; // ✅ @Bean se inject hoga
 
     public String register(RegisterRequest request) {
 
@@ -44,6 +44,32 @@ public class AuthService {
 
         String token = jwtUtil.generateToken(user.getEmail());
 
-        return new AuthResponse(token);
+        return new AuthResponse(
+                token,
+                user.getName(),
+                user.getEmail(),
+                user.getRole()
+        );
+    }
+
+    public String changePassword(String authHeader, ChangePasswordRequest request) {
+
+        // ✅ Token se email nikalo
+        String token = authHeader.substring(7);
+        String email = jwtUtil.getEmailFromToken(token);
+
+        User user = repo.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        // ✅ Current password verify karo
+        if (!encoder.matches(request.getCurrentPassword(), user.getPassword())) {
+            throw new RuntimeException("Current password is wrong");
+        }
+
+        // ✅ Naya password encode karke save karo
+        user.setPassword(encoder.encode(request.getNewPassword()));
+        repo.save(user);
+
+        return "Password changed successfully";
     }
 }
