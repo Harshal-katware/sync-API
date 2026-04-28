@@ -14,6 +14,6 @@ public class MenuItem {
 
     private String name;
     private Double price;
-    private String category;  // "veg" | "nonveg" | "drink"
+    private String category;
     private String emoji;
 }

@@ -13,5 +13,5 @@ public class TableItem {
     private Long id;
 
     private String name;
-    private String zone;  // "HALL" | "FAMILY" | "PARCEL"
+    private String zone;
 }

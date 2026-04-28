@@ -12,31 +12,26 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MenuItemController {
 
-    private final MenuItemService service;
+    private final MenuItemService menuItemService;
 
     @GetMapping
-    public List<MenuItem> getAll() {
-        return service.getAll();
-    }
-
-    @GetMapping("/category/{cat}")
-    public List<MenuItem> getByCategory(@PathVariable String cat) {
-        return service.getByCategory(cat);
+    public List<MenuItem> getAllItems() {
+        return menuItemService.getAllItems();
     }
 
     @PostMapping
-    public MenuItem create(@RequestBody MenuItem item) {
-        return service.create(item);
+    public MenuItem addItem(@RequestBody MenuItem item) {
+        return menuItemService.addItem(item);
     }
 
     @PutMapping("/{id}")
-    public MenuItem update(@PathVariable Long id, @RequestBody MenuItem item) {
-        return service.update(id, item);
+    public MenuItem updateItem(@PathVariable Long id, @RequestBody MenuItem item) {
+        return menuItemService.updateItem(id, item);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        service.delete(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<?> deleteItem(@PathVariable Long id) {
+        menuItemService.deleteItem(id);
+        return ResponseEntity.ok("Deleted successfully");
     }
 }

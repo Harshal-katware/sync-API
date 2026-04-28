@@ -12,26 +12,21 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TableItemController {
 
-    private final TableItemService service;
+    private final TableItemService tableItemService;
 
     @GetMapping
     public List<TableItem> getAll() {
-        return service.getAll();
-    }
-
-    @GetMapping("/zone/{zone}")
-    public List<TableItem> getByZone(@PathVariable String zone) {
-        return service.getByZone(zone);
+        return tableItemService.getAll();
     }
 
     @PostMapping
-    public TableItem create(@RequestBody TableItem table) {
-        return service.create(table);
+    public TableItem add(@RequestBody TableItem t) {
+        return tableItemService.add(t);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        service.delete(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        tableItemService.delete(id);
+        return ResponseEntity.ok("Deleted");
     }
 }

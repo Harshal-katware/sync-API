@@ -2,39 +2,37 @@ package com.example.Sync.Service;
 
 import com.example.Sync.Entity.MenuItem;
 import com.example.Sync.Repository.MenuItemRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class MenuItemService {
 
-    private final MenuItemRepository repo;
+    private final MenuItemRepository menuItemRepository;
 
-    public List<MenuItem> getAll() {
-        return repo.findAll();
+    public MenuItemService(MenuItemRepository menuItemRepository) {
+        this.menuItemRepository = menuItemRepository;
     }
 
-    public List<MenuItem> getByCategory(String category) {
-        return repo.findByCategory(category);
+    public List<MenuItem> getAllItems() {
+        return menuItemRepository.findAll();
     }
 
-    public MenuItem create(MenuItem item) {
-        return repo.save(item);
+    public MenuItem addItem(MenuItem item) {
+        return menuItemRepository.save(item);
     }
 
-    public MenuItem update(Long id, MenuItem updated) {
-        MenuItem item = repo.findById(id)
-                .orElseThrow(() -> new RuntimeException("MenuItem not found: " + id));
-        item.setName(updated.getName());
-        item.setPrice(updated.getPrice());
-        item.setCategory(updated.getCategory());
-        item.setEmoji(updated.getEmoji());
-        return repo.save(item);
+    public MenuItem updateItem(Long id, MenuItem updatedItem) {
+        MenuItem existing = menuItemRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Item not found"));
+        existing.setName(updatedItem.getName());
+        existing.setPrice(updatedItem.getPrice());
+        existing.setCategory(updatedItem.getCategory());
+        existing.setEmoji(updatedItem.getEmoji());
+        return menuItemRepository.save(existing);
     }
 
-    public void delete(Long id) {
-        repo.deleteById(id);
+    public void deleteItem(Long id) {
+        menuItemRepository.deleteById(id);
     }
 }

@@ -10,13 +10,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TableItemService {
 
-    private final TableItemRepository repo;
+    private final TableItemRepository tableItemRepository;
 
-    public List<TableItem> getAll()               { return repo.findAll(); }
-    public List<TableItem> getByZone(String zone) { return repo.findByZone(zone); }
-    public TableItem       create(TableItem t)    { return repo.save(t); }
+    public List<TableItem> getAll() {
+        return tableItemRepository.findAll();
+    }
+
+    public TableItem add(TableItem t) {
+        return tableItemRepository.save(t);
+    }
 
     public void delete(Long id) {
-        repo.deleteById(id);
+        tableItemRepository.deleteById(id);
     }
 }
