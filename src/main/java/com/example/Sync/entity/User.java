@@ -16,12 +16,13 @@ public class User {
 
     private String name;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)  // ✅ nullable = false
     private String email;
 
     private String password;
 
     private String role; // ADMIN / STAFF
 
+    @Column(unique = true, nullable = false)  // ✅ unique + nullable = false
     private String contactNumber;
 }
