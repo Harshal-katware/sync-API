@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/menu")
+@CrossOrigin(origins = "http://localhost:5173")
 @RequiredArgsConstructor
 public class MenuItemController {
 
