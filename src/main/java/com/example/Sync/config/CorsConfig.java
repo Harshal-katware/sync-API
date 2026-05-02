@@ -1,4 +1,4 @@
-package com.example.Sync.config;
+package com.example.Sync.Config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

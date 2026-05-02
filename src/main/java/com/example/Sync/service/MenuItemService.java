@@ -1,10 +1,9 @@
-package com.example.Sync.service;
+package com.example.Sync.Service;
 
-import com.example.Sync.entity.MenuItem;
-import com.example.Sync.repository.MenuItemRepository;
+import com.example.Sync.Entity.MenuItem;
+import com.example.Sync.Repository.MenuItemRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
-
 
 @Service
 public class MenuItemService {
@@ -29,6 +28,7 @@ public class MenuItemService {
         existing.setName(updatedItem.getName());
         existing.setPrice(updatedItem.getPrice());
         existing.setCategory(updatedItem.getCategory());
+        existing.setEmoji(updatedItem.getEmoji());
         return menuItemRepository.save(existing);
     }
 

@@ -1,7 +1,7 @@
-package com.example.Sync.controller;
+package com.example.Sync.Controller;
 
-import com.example.Sync.entity.MenuItem;
-import com.example.Sync.service.MenuItemService;
+import com.example.Sync.Entity.MenuItem;
+import com.example.Sync.Service.MenuItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
