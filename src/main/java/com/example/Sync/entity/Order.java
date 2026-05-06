@@ -1,4 +1,4 @@
-package com.example.Sync.Entity;
+package com.example.Sync.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -22,6 +22,9 @@ public class Order {
 
     // "CASH" | "CARD" | "UPI" | "ONLINE"
     private String paymentMode;
+
+    // ✅ NEW — "dine-in" | "takeaway" | "online"
+    private String orderType;
 
     private Double subtotal;
     private Double discount;

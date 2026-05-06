@@ -1,7 +1,7 @@
-package com.example.Sync.Controller;
+package com.example.Sync.controller;
 
-import com.example.Sync.Entity.Order;
-import com.example.Sync.Service.OrderService;
+import com.example.Sync.entity.Order;
+import com.example.Sync.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,7 +1,7 @@
-package com.example.Sync.Service;
+package com.example.Sync.service;
 
-import com.example.Sync.Entity.Order;
-import com.example.Sync.Repository.OrderRepository;
+import com.example.Sync.entity.Order;
+import com.example.Sync.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;

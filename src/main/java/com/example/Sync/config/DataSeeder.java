@@ -1,6 +1,6 @@
-package com.example.Sync.Config;
+package com.example.Sync.config;
 
-import com.example.Sync.Repository.TableItemRepository;
+import com.example.Sync.repository.TableItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
