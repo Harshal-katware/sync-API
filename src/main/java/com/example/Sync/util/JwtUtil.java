@@ -42,4 +42,8 @@ public class JwtUtil {
                 .getBody()
                 .getSubject();
     }
+
+    public String extractUsername(String token) {
+        return token;
+    }
 }
