@@ -1,12 +1,15 @@
 package com.example.Sync.Service;
 
 import com.example.Sync.Entity.Order;
+import com.example.Sync.Entity.OrderItem;
 import com.example.Sync.Repository.OrderRepository;
+import com.example.Sync.dto.OrderRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -14,36 +17,65 @@ public class OrderService {
 
     private final OrderRepository repo;
 
-    public List<Order> getAll()                   { return repo.findAll(); }
-    public List<Order> getByStatus(String status) { return repo.findByStatus(status); }
+    // ── GET ───────────────────────────────────────────────────────────────────
 
-    public Optional<Order> getOpenByTable(Long tableId) {
-        return repo.findByTableIdAndStatus(tableId, "OPEN");
+    public List<Order> getAllOrders() {
+        return repo.findAll();
     }
 
-    // Frontend: POST /api/orders
-    public Order create(Order order) {
+    public List<Order> getByStatus(String status) {
+        return repo.findByStatus(status);
+    }
+
+    // ── CREATE ────────────────────────────────────────────────────────────────
+
+    public Order createOrder(OrderRequestDto dto) {
+        Order order = new Order();                       // ✅ Long nahi, Order object
+        order.setTableId(dto.getTableId());              // ✅ equals() nahi, setTableId()
+        order.setTableName(dto.getTableName());          // ✅ getClass() nahi, setTableName()
+        order.setSubtotal(dto.getSubtotal());
+        order.setDiscount(dto.getDiscount());
+        order.setGst(dto.getGst());
+        order.setServiceCharge(dto.getServiceCharge());
+        order.setBillCharge(dto.getBillCharge());
+        order.setTotal(dto.getTotal());
         order.setStatus("OPEN");
         order.setCreatedAt(LocalDateTime.now());
+
+        if (dto.getItems() != null) {
+            List<OrderItem> items = dto.getItems().stream().map(i -> {
+                OrderItem item = new OrderItem();
+                item.setMenuId(i.getMenuId());
+                item.setName(i.getName());
+                item.setEmoji(i.getEmoji());
+                item.setPrice(i.getPrice());
+                item.setQty(i.getQty());
+                item.setOrder(order);                    // ✅ setId(order) nahi, setOrder(order)
+                return item;
+            }).collect(Collectors.toList());
+            order.setItems(items);                       // ✅ ((Order) order) cast nahi chahiye
+        }
+
         return repo.save(order);
     }
 
-    // Frontend: PUT /api/orders/{id}  — update items/totals
-    public Order update(Long id, Order updated) {
+    // ── UPDATE ────────────────────────────────────────────────────────────────
+
+    public Order updateOrder(Long id, OrderRequestDto dto) {
         Order order = repo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Order not found: " + id));
-        order.setItems(updated.getItems());
-        order.setSubtotal(updated.getSubtotal());
-        order.setDiscount(updated.getDiscount());
-        order.setGst(updated.getGst());
-        order.setServiceCharge(updated.getServiceCharge());
-        order.setBillCharge(updated.getBillCharge());
-        order.setTotal(updated.getTotal());
+        order.setSubtotal(dto.getSubtotal());
+        order.setDiscount(dto.getDiscount());
+        order.setGst(dto.getGst());
+        order.setServiceCharge(dto.getServiceCharge());
+        order.setBillCharge(dto.getBillCharge());
+        order.setTotal(dto.getTotal());
         return repo.save(order);
     }
 
-    // Frontend: PUT /api/orders/{id}/settle — settle karo
-    public Order settle(Long id, String paymentMode) {
+    // ── SETTLE ────────────────────────────────────────────────────────────────
+
+    public Order settleOrder(Long id, String paymentMode) {
         Order order = repo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Order not found: " + id));
         order.setStatus("SETTLED");
@@ -52,13 +84,16 @@ public class OrderService {
         return repo.save(order);
     }
 
-    // Frontend: PUT /api/orders/{id}/save — KOT/Bill save
+    // ── SAVE ──────────────────────────────────────────────────────────────────
+
     public Order saveOrder(Long id) {
         Order order = repo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Order not found: " + id));
         order.setStatus("SAVED");
         return repo.save(order);
     }
+
+    // ── DELETE ────────────────────────────────────────────────────────────────
 
     public void delete(Long id) {
         repo.deleteById(id);

@@ -1,7 +1,7 @@
-package com.example.Sync.exception;
-
-public class CustomException extends RuntimeException {
-    public CustomException(String message) {
-        super(message);
-    }
-}
+//package com.example.Sync.exception;
+//
+//public class CustomException extends RuntimeException {
+//    public CustomException(String message) {
+//        super(message);
+//    }
+//}
