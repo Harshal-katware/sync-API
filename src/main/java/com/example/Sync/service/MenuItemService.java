@@ -1,7 +1,7 @@
-package com.example.Sync.Service;
+package com.example.Sync.service;
 
-import com.example.Sync.Entity.MenuItem;
-import com.example.Sync.Repository.MenuItemRepository;
+import com.example.Sync.entity.MenuItem;
+import com.example.Sync.repository.MenuItemRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 

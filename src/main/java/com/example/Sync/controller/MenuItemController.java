@@ -1,7 +1,7 @@
 package com.example.Sync.controller;
 
-import com.example.Sync.Entity.MenuItem;
-import com.example.Sync.Service.MenuItemService;
+import com.example.Sync.entity.MenuItem;
+import com.example.Sync.service.MenuItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/menu")
+@CrossOrigin(origins = "http://localhost:5173")
 @RequiredArgsConstructor
 public class MenuItemController {
 
