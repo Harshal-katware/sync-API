@@ -1,4 +1,4 @@
-package com.example.Sync.controller;
+package com.example.Sync.Controller;
 
 import com.example.Sync.dto.QuantityDTO;
 import com.example.Sync.entity.Inventory;

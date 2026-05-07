@@ -1,4 +1,4 @@
-package com.example.Sync.entity;
+package com.example.Sync.Entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -15,4 +15,5 @@ public class MenuItem {
     private String name;
     private Double price;
     private String category;
+   
 }
