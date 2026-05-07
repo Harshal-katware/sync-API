@@ -5,7 +5,7 @@ import com.example.Sync.entity.User;
 import com.example.Sync.repository.UserRepository;
 import com.example.Sync.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,7 +14,7 @@ public class AuthService {
 
     private final UserRepository repo;
     private final JwtUtil jwtUtil;
-    private final BCryptPasswordEncoder encoder;
+    private final PasswordEncoder encoder;
 
     public String register(RegisterRequest request) {
 
@@ -39,7 +39,6 @@ public class AuthService {
 
     public AuthResponse login(LoginRequest request) {
 
-        // Email or contact number login
         User user = repo.findByEmailOrContact(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 

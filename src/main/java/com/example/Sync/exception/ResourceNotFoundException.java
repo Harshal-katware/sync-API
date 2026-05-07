@@ -1,4 +1,4 @@
-package com.example.Sync.Exception;
+package com.example.Sync.exception;
 
 // ─── Custom Exception ────────────────────────────────────────────────────────
 

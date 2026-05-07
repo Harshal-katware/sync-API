@@ -1,6 +1,6 @@
-package com.example.Sync.Repository;
+package com.example.Sync.repository;
 
-import com.example.Sync.Entity.TableItem;
+import com.example.Sync.entity.TableItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
-package com.example.Sync.Repository;
+package com.example.Sync.repository;
 
-import com.example.Sync.Entity.Order;
+import com.example.Sync.entity.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
