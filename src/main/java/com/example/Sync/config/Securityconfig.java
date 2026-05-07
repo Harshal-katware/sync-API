@@ -1,4 +1,4 @@
-package com.example.Sync.Config;
+package com.example.Sync.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.*;

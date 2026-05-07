@@ -1,9 +1,9 @@
-package com.example.Sync.Service;
+package com.example.Sync.service;
 
-import com.example.Sync.Entity.KotItem;
-import com.example.Sync.Entity.Order;
-import com.example.Sync.Repository.KotItemRepository;
-import com.example.Sync.Repository.OrderRepository;
+import com.example.Sync.entity.KotItem;
+import com.example.Sync.entity.Order;
+import com.example.Sync.repository.KotItemRepository;
+import com.example.Sync.repository.OrderRepository;
 import com.example.Sync.dto.KotRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ public class KotService {
 
     /**
      * Add a new KOT round to an existing order.
-     *
+     * // add
      * Called when waiter clicks "Print KOT" AFTER the first time
      * (i.e., the order already exists in DB).
      *

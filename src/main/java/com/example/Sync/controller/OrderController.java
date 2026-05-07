@@ -1,9 +1,9 @@
-package com.example.Sync.Controller;
+package com.example.Sync.controller;
 
-import com.example.Sync.Entity.KotItem;
-import com.example.Sync.Entity.Order;
-import com.example.Sync.Service.KotService;
-import com.example.Sync.Service.OrderService;
+import com.example.Sync.entity.KotItem;
+import com.example.Sync.entity.Order;
+import com.example.Sync.service.KotService;
+import com.example.Sync.service.OrderService;
 import com.example.Sync.dto.KotRequestDto;
 import com.example.Sync.dto.OrderRequestDto;
 import com.example.Sync.dto.SettleRequestDto;

@@ -1,4 +1,4 @@
-package com.example.Sync.Config;
+package com.example.Sync.config;
 
 import com.example.Sync.util.JwtUtil;
 import jakarta.servlet.*;

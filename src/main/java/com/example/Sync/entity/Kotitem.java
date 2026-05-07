@@ -1,4 +1,4 @@
-package com.example.Sync.Entity;
+package com.example.Sync.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

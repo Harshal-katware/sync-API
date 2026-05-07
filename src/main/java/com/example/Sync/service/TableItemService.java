@@ -1,7 +1,7 @@
-package com.example.Sync.Service;
+package com.example.Sync.service;
 
-import com.example.Sync.Entity.TableItem;
-import com.example.Sync.Repository.TableItemRepository;
+import com.example.Sync.entity.TableItem;
+import com.example.Sync.repository.TableItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
