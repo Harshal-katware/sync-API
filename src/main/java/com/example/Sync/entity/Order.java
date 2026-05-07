@@ -23,6 +23,9 @@ public class Order {
     // "CASH" | "CARD" | "UPI" | "ONLINE"
     private String paymentMode;
 
+    // ✅ NEW — "dine-in" | "takeaway" | "online"
+    private String orderType;
+
     private Double subtotal;
     private Double discount;
     private Double gst;
