@@ -33,7 +33,8 @@ public class Order {
     private LocalDateTime createdAt;
     private LocalDateTime settledAt;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "order_id")
+    // ✅ mappedBy = "order" — OrderItem.order field se link
+    // ✅ @JoinColumn hataya — mappedBy ke saath @JoinColumn nahi chahiye Order side pe
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> items;
 }

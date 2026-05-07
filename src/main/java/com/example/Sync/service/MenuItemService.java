@@ -28,7 +28,7 @@ public class MenuItemService {
         existing.setName(updatedItem.getName());
         existing.setPrice(updatedItem.getPrice());
         existing.setCategory(updatedItem.getCategory());
-        existing.setEmoji(updatedItem.getEmoji());
+
         return menuItemRepository.save(existing);
     }
 
