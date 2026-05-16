@@ -22,7 +22,7 @@ public class KotService {
 
     /**
      * Add a new KOT round to an existing order.
-     *
+     * // add
      * Called when waiter clicks "Print KOT" AFTER the first time
      * (i.e., the order already exists in DB).
      *
