@@ -1,6 +1,5 @@
 package com.example.Sync.repository;
 
-//import com.example.Sync.entity.MenuItem;
 import com.example.Sync.entity.MenuItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -1,19 +1,18 @@
 package com.example.Sync.entity;
 
-
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "tables")
-
-public class TableItem {
+@Table(name = "taxes")
+public class Tax {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
-    private String zone;
+    private String rate;
+    private Boolean enabled;
 }
