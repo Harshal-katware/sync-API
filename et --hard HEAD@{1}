@@ -1,0 +1,13 @@
+[33mfdf4033[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mAkif[m[33m)[m HEAD@{0}: pull origin rushi: Merge made by the 'ort' strategy.
+[33m9e2f90e[m[33m ([m[1;31morigin/Akif[m[33m)[m HEAD@{1}: commit: created superadmin panel
+[33m47d9404[m HEAD@{2}: commit: created superadmin panel
+[33m7f556af[m HEAD@{3}: commit (merge): merging billing code
+[33m6435665[m HEAD@{4}: commit (merge): merging billing code
+[33md29e351[m HEAD@{5}: commit (merge): added inventory code
+[33m9505159[m HEAD@{6}: commit (merge): added inventory page
+[33mb44b0e2[m HEAD@{7}: commit: connected db to setting pages
+[33mb3d349c[m HEAD@{8}: checkout: moving from Akif to Akif
+[33mb3d349c[m HEAD@{9}: commit: Backend of code menupage
+[33m2314de6[m HEAD@{10}: pull origin yuvraj: Fast-forward
+[33m87b9685[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{11}: checkout: moving from main to Akif
+[33m87b9685[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{12}: clone: from https://github.com/Harshal-katware/sync-API.git
