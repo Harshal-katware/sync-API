@@ -12,6 +12,10 @@ public class RestaurantInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // ✅ Each admin has their own restaurant info
+    @Column(unique = true)
+    private Long userId;
+
     private String name;
     private String email;
     private String phone;
