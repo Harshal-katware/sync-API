@@ -1,0 +1,11 @@
+package com.example.Sync.dto;
+
+import lombok.Data;
+
+@Data
+public class SuperAdminRegisterRequest {
+    private String name;
+    private String email;
+    private String password;
+    private String contactNumber;
+}
