@@ -238,7 +238,7 @@ public class AuthService {
         repo.save(user);
 
         String resetLink =
-                "http://localhost:5173/reset-password/" + token;
+                "http://localhost:5174/reset-password/" + token;
 
         emailService.sendEmail(
                 user.getEmail(),

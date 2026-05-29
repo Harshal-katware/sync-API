@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.List;
-
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 @Data
 @Entity
 @Table(name = "orders")
@@ -38,6 +39,10 @@ public class Order {
 
     // ✅ mappedBy = "order" — OrderItem.order field se link
     // ✅ @JoinColumn hataya — mappedBy ke saath @JoinColumn nahi chahiye Order side pe
+
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> items;
+    @JsonManagedReference
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<OrderAdjustment> adjustments;
 }
