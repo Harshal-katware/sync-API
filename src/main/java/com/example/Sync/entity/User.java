@@ -1,38 +1,10 @@
-//package com.example.Sync.entity;
-//
-//import jakarta.persistence.*;
-//import lombok.*;
-//
-//@Entity
-//@Data
-//@NoArgsConstructor
-//@AllArgsConstructor
-//@Table(name = "users")
-//public class User {
-//
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long id;
-//
-//    private String name;
-//
-//    @Column(unique = true, nullable = false)  // ✅ nullable = false
-//    private String email;
-//
-//    private String password;
-//
-//    private String role; // ADMIN / STAFF
-//
-//    @Column(unique = true, nullable = false)  // ✅ unique + nullable = false
-//    private String contactNumber;
-//}
 
 package com.example.Sync.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
-
+import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
@@ -56,6 +28,10 @@ public class User {
 
     @Column(unique = true, nullable = false)
     private String contactNumber;
+
+    private String resetToken;
+
+    private LocalDateTime resetTokenExpiry;
 
     // ✅ Subscription fields
     @Enumerated(EnumType.STRING)

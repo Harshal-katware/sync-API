@@ -143,6 +143,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -151,6 +153,7 @@ public class AuthService {
     private final UserRepository repo;
     private final JwtUtil jwtUtil;
     private final BCryptPasswordEncoder encoder;
+    private final EmailService emailService;
 
     public String register(RegisterRequest request) {
         if (repo.findByEmail(request.getEmail()).isPresent()) {
@@ -217,5 +220,60 @@ public class AuthService {
         user.setPassword(encoder.encode(request.getNewPassword()));
         repo.save(user);
         return "Password changed successfully";
+    }
+    public String forgotPassword(String email) {
+
+        User user = repo.findByEmail(email)
+                .orElseThrow(() ->
+                        new RuntimeException("User not found"));
+
+        String token = UUID.randomUUID().toString();
+
+        user.setResetToken(token);
+
+        user.setResetTokenExpiry(
+                LocalDateTime.now().plusMinutes(15)
+        );
+
+        repo.save(user);
+
+        String resetLink =
+                "http://localhost:5173/reset-password/" + token;
+
+        emailService.sendEmail(
+                user.getEmail(),
+                "Reset Password",
+                "Click below link to reset your password:\n\n"
+                        + resetLink
+        );
+
+        return "Reset password link sent to your email";
+    }
+
+    public String resetPassword(
+            String token,
+            String password
+    ) {
+
+        User user = repo.findByResetToken(token)
+                .orElseThrow(() ->
+                        new RuntimeException("Invalid token"));
+
+        if (user.getResetTokenExpiry()
+                .isBefore(LocalDateTime.now())) {
+
+            throw new RuntimeException("Token expired");
+        }
+
+        user.setPassword(
+                encoder.encode(password)
+        );
+
+        user.setResetToken(null);
+        user.setResetTokenExpiry(null);
+
+        repo.save(user);
+
+        return "Password updated successfully";
     }
 }

@@ -4,6 +4,7 @@ import com.example.Sync.dto.*;
 import com.example.Sync.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -29,5 +30,27 @@ public class AuthController {
             @RequestBody ChangePasswordRequest request
     ) {
         return service.changePassword(authHeader, request);
+    }
+
+    @PostMapping("/forgot-password")
+    public String forgotPassword(
+            @RequestBody Map<String, String> body
+    ) {
+
+        return service.forgotPassword(
+                body.get("email")
+        );
+    }
+
+    @PostMapping("/reset-password/{token}")
+    public String resetPassword(
+            @PathVariable String token,
+            @RequestBody Map<String, String> body
+    ) {
+
+        return service.resetPassword(
+                token,
+                body.get("password")
+        );
     }
 }
